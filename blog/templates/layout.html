@@ -1,0 +1,70 @@
+<!DOCTYPE html >
+
+<html>
+    <head>
+        <!--meta tag-->
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+        <!--bootstrap style link CSS-->
+        <link href="https://bootswatch.com/4/united/bootstrap.min.css" rel="stylesheet">
+        <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='style.css') }}">
+
+        <!--bootstrap JAVAScript code-->
+        <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" ></script>
+        <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" ></script>
+        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js" ></script>
+
+        <title>{{ title }}</title>
+
+    </head>
+    <body>
+    <header class="site-header">
+        <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+          <a class="navbar-brand" href="{{ url_for('main.home')}}">Home</a>
+          <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarColor02" aria-controls="navbarColor02" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+          </button>
+          <div class="collapse navbar-collapse" id="navbarColor02">
+            <ul class="navbar-nav ml-auto">
+              {% if current_user.is_authenticated %}
+              <li class="nav-item">
+                <a class="nav-link" href="{{ url_for('posts_.Postform')}}">New post</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="{{ url_for('end_user.setting')}}">Setting</a>
+              </li>
+                <li class="nav-item">
+                  <a class="nav-link" href="{{ url_for('end_user.logout')}}">Logout</a>
+                </li>
+              {% else %}
+                 <li class="nav-item">
+                  <a class="nav-link" href="{{ url_for('end_user.register')}}">Register</a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" href="{{ url_for('end_user.login')}}">Login</a></a>
+                </li>
+              {% endif %}
+            </ul>
+          </div>
+        </nav>
+      </header>
+         <main role="main" class="container">
+          <div class="row">
+             <div class="col-md-8">
+              {% with messages = get_flashed_messages(with_categories=true) %}
+                {% if messages %}
+                  {% for category, message in messages %}
+                    <div class="alert alert-{{ category }}">
+                      {{ message }}
+                    </div>
+                  {% endfor %}
+                {% endif %}
+              {% endwith %}
+               </div>
+        </div>
+      </div>
+      {% block main %} {% endblock %}
+    </main>
+  </body>
+</html>
