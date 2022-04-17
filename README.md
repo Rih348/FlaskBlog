@@ -11,7 +11,7 @@ The website functionality:
 
 4- Edit, delete posts.
 
-6- every user has his/her own profile.
+6- Every user has his/her own profile.
 
 7- Rest passwords.
 
