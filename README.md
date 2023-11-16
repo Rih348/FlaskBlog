@@ -17,3 +17,4 @@ The website functionality:
 
 8- Change/Update email or username.
 
+All thanks and credit for https://github.com/CoreyMSchafer
